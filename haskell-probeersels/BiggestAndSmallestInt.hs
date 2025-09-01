@@ -1,6 +1,3 @@
--- test.hs
--- A simple test file to print biggest and smallest Int values
-
 -- Define constants
 biggestInt, smallestInt :: Int
 biggestInt  = maxBound
