@@ -13,3 +13,8 @@ Use guards when conditions are inequalities or boolean expressions.
 Use case when you are matching specific values.
 
 Use if … then … else for simple inline choices.
+
+
+
+
+    https://www.haskelltutorials.com/guides/haskell-lists-ultimate-guide.html

@@ -1,5 +1,3 @@
-
-
 calc :: String -> Float -> Float -> Float
 calc op a b
     | op == "+" = a + b
@@ -18,6 +16,6 @@ main = do
     secondNumber <- readLn :: IO Float
 
     let result = calc calcStr firstNumber secondNumber
-    
+
     -- "show" in this print makes the result a Str instead of a Int
     putStrLn ("Your number is: " ++ show result)
