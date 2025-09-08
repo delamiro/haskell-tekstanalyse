@@ -1,5 +1,10 @@
 import qualified Data.Set as Set
 
+countChar :: Char -> String -> Int
+countChar _ [] = 0
+countChar c (x:xs)
+    | c == x = 1 + countChar c xs
+
 uniqueCount :: [String] -> Int
 uniqueCount = Set.size . Set.fromList
 
