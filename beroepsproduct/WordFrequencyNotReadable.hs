@@ -1,16 +1,14 @@
 import qualified Data.Set as Set
 
-
--- Recursive character counter
 countChar :: Char -> String -> Int
 countChar _ [] = 0
-countChar charGiven (firstChar:restOfTheChars)
-    | charGiven == firstChar = 1 + countChar charGiven restOfTheChars
-    | otherwise = countChar charGiven restOfTheChars
+countChar c (s:xs)
+    | c == s = 1 + countChar c xs
+    | otherwise = countChar c xs
 
 countCharInStrings :: Char -> [String] -> Int
 countCharInStrings _ [] = 0
-countCharInStrings char (firstString:restOfTheStrings) = countChar char firstString + countCharInStrings char restOfTheStrings
+countCharInStrings c (s:ss) = countChar c s + countCharInStrings c ss
 
 uniqueCount :: [String] -> Int
 uniqueCount = Set.size . Set.fromList
@@ -22,6 +20,7 @@ analyzeText txt charToAnalyze = do
     let wordCount = length wordList
     let charCount = length txt
     let uniqueCharCount = countCharInStrings charToAnalyze wordList
+
 
     putStrLn $ "Your text: " ++ unwords wordList
     putStrLn ("How many characters: " ++ show charCount)

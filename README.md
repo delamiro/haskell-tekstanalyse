@@ -1,4 +1,9 @@
-# Prerequisites
+# Haskell text analyse project
+
+This project is a school assesment to learn a functional programming language.
+I chose **Haskell** because i wanted to challenge myself since this is the __most functional__ language.
+
+## Prerequisites
 
 To run these files you need to install 3 things:
 
@@ -6,7 +11,7 @@ To run these files you need to install 3 things:
 2. [VsCode](https://code.visualstudio.com/)
 3. [VsCode Haskell extension](https://marketplace.visualstudio.com/items?itemName=haskell.haskell)
 
-## GHCup
+### GHCup
 
 **GHCup** is a version manager for the Haskell toolchain. when you are installing **GHCup** you also will download:
 
@@ -18,25 +23,23 @@ completion, inline errors, code actions etc. in supporting editors (e. g. VSCode
 > **Important**  
 > When installing you need to say you want to install all these things. So look carefull during installation!!!
 
-## VsCode
+### VsCode
 
 This is the text editor that i will use. When there is a instruction on how to run a file, it will be assumed that you are using this editor.
 
-## VsCode Haskell extension
+### VsCode Haskell extension
 
 Highlights syntax and will color your haskell code properly. This makes coding easier and more readable.
 
-# The school assignment
+## The school assignment
 
 The school assignment is to make a *textanalyse* application that wordfrequentie analysed in a text file.
 
 I also need to use recursion and higher order functions.
 
-#Gebruik recursie en higher-order functions.
+### What is recursion?
 
-# What is recursion?
-
-Recursion if when a function calls itself. To make it so that the function will not be a infinite loop, it has a **Base Case**. If the **Base case** is true then the recursion stops. It also has to work towards the **Base case** so you need to **Make progress**.  This is a example in Java code:
+Recursion is when a function calls itself. To make it so that the function will not be a infinite loop, it has a **Base Case**. If the **Base case** is true then the recursion stops. It also has to work towards the **Base case** so you need to **Make progress**.  This is a example in Java code:
 
 ```java
 public void countdown(int startNumber){
@@ -68,7 +71,7 @@ countdown n =
 This is the same countdown function but in haskell.
 The structure looks the same, you start with a **Base case**, **Make progress** and then it works.
 
-# What are higher-order functions?
+### What are higher-order functions?
 
 A higher-order function is a function that operates on other functions. it can take them as an input, return them or both.
 
@@ -77,7 +80,7 @@ applyFunction :: (Int -> Int) -> Int -> Int
 applyFunction f x = f x
 ```
 
-In this code you see a function called `applyFunction`. i needs a function that takes an int and returns it `(Int -> Int)`
+In this code you see a function called `applyFunction`. It needs a function that takes an int and returns int `(Int -> Int)`
 
 ` -> Int -> Int` also takes an Int and returns a Int
 So `applyFunction takes a function as input and applies it to a number.
@@ -88,8 +91,9 @@ So `applyFunction takes a function as input and applies it to a number.
 `applyFunction` calls `f` with `x`
 
 If you want to use this for a print you can call it like
-```haskell
+
+```Haskell
 print (applyFunction anotherFunction 8)
 ```
 
-First you call `applyFunction` then `anotherFunction` and then the int paramater.
+First you call `applyFunction` then give it the paramater `anotherFunction` and the int paramater (8 is used as the example).

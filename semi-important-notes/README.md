@@ -14,7 +14,4 @@ Use case when you are matching specific values.
 
 Use if … then … else for simple inline choices.
 
-
-
-
-    https://www.haskelltutorials.com/guides/haskell-lists-ultimate-guide.html
+https://www.haskelltutorials.com/guides/haskell-lists-ultimate-guide.html
