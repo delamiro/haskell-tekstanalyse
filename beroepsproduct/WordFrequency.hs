@@ -41,6 +41,18 @@ analyzeText txt charToAnalyze = do
     putStrLn ("How many times is the letter a used: " ++ show uniqueCharCount)
     putStrLn ("Dubble char count result: " ++ show dubbleCharCountResult)
 
+    let filename = "analysis.txt"
+    let content = unlines
+            [ "Your text: " ++ unwords wordList
+            , "How many characters: " ++ show charCount
+            , "How many words: " ++ show wordCount
+            , "How many unique words: " ++ show uniqueWordsCount
+            , "How many times is the letter a used: " ++ show uniqueCharCount
+            , "Dubble char count result: " ++ show dubbleCharCountResult
+            ]
+    writeFile filename content
+    putStrLn $ "File '" ++ filename ++ "' has been created."
+
 main :: IO ()
 main = do
     contents <- readFile "example.txt"

@@ -1,0 +1,6 @@
+Your text: Eikels zijn roze, Monster Ultra Rosa is roze, ik heb zojuist 24 eikels gekocht
+How many characters: 78
+How many words: 14
+How many unique words: 13
+How many times is the letter a used: 2
+Dubble char count result: 156
