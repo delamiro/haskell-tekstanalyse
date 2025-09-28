@@ -28,10 +28,13 @@ De Opdracht kan je [hier](https://aim-cni.github.io/app/docs/Paradigma%20challen
 
 ## Onderzoek
 
-### Haskell
+### Wat is een functionele programmeertaal
 
 Haskell is een puur-functionele programmeertaal.
-Een functionele taal 
+Een functionele programmeertaal is een programmeertaal die gebaseerd zijn op wiskundige functies.
+Hierdoor
+
+### Haskell
 
 
 ### Welke functionele concepten worden vaak gebruikt in haskell
@@ -49,6 +52,11 @@ Een functionele taal
 ## Bronvermelding
 
 - Haskell Foundation. (n.d.). *Haskell*. Geraadpleegd op 19 september 2025, van https://www.haskell.org/
+
+
+https://wiki.haskell.org/Why_Haskell_matters
+
+https://wiki.haskell.org/index.php?title=Haskell
 
 ## QUICKNOTE
 
