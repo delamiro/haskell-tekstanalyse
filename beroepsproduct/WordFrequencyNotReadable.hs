@@ -1,41 +1,35 @@
-countChar :: Char -> String -> Int
-countChar _ [] = 0
-countChar c (s:xs)
-    | c == s = 1 + countChar c xs
-    | otherwise = countChar c xs
+countCharInString :: Char -> String -> Int
+countCharInString _ [] = 0
+countCharInString c (x:xs)
+    | c == x    = 1 + countCharInString c xs
+    | otherwise = countCharInString c xs
 
--- Unique word counter using 
+countCharInStringList :: Char -> [String] -> Int
+countCharInStringList _ [] = 0
+countCharInStringList c (s:ss) = countCharInString c s + countCharInStringList c ss
 
 countUniqueWords :: [String] -> Int
 countUniqueWords [] = 0
-countUniqueWords (x:xs)
-    | x `elem` xs = countUniqueWords xs
-    | otherwise = 1 + countUniqueWords xs
-
-countCharInStrings :: Char -> [String] -> Int
-countCharInStrings _ [] = 0
-countCharInStrings c (s:ss) = countChar c s + countCharInStrings c ss
+countUniqueWords (firstWord:restOfTheWords)
+    | firstWord `elem` restOfTheWords = countUniqueWords restOfTheWords
+    | otherwise = 1 + countUniqueWords restOfTheWords
 
 analyzeText :: String -> Char -> IO ()
-analyzeText txt charToAnalyze = do
-    let wordList = words txt
-    let uniqueWordsCount = countUniqueWords wordList
-    let wordCount = length wordList
-    let charCount = length txt
-    let uniqueCharCount = countCharInStrings charToAnalyze wordList
-
-
-    putStrLn $ "Your text: " ++ unwords wordList
-    putStrLn ("How many characters: " ++ show charCount)
-    putStrLn ("How many words: " ++ show wordCount)
-    putStrLn ("How many unique words: " ++ show uniqueWordsCount)
-    putStrLn ("How many times is the letter a used: " ++ show uniqueCharCount)
+analyzeText txt ch = do
+    let filename = "analysis.txt"
+        content = unlines
+            [ "Your text: " ++ unwords (words txt)
+            , "How many characters: " ++ show (length txt)
+            , "How many words: " ++ show (length (words txt))
+            , "How many unique words: " ++ show (countUniqueWords (words txt))
+            , "How many times is the letter " ++ [ch] ++ " used: " ++ show (countCharInStringList ch (words txt))
+            ]
+    writeFile filename content
+    putStrLn $ "File '" ++ filename ++ "' has been created."
 
 main :: IO ()
 main = do
-    putStrLn "Add text here to analyze"
-    bigTextStr <- getLine
+    contents <- readFile "example.txt"
     putStrLn "Add a character to check how many times it occors in the text"
     charToAnalyze <- getChar
-    analyzeText bigTextStr charToAnalyze
-
+    analyzeText contents charToAnalyze
