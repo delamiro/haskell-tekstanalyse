@@ -6,6 +6,14 @@ countChar c (s:xs)
     | c == s = 1 + countChar c xs
     | otherwise = countChar c xs
 
+-- Unique word counter using 
+
+countUniqueWords :: [String] -> Int
+countUniqueWords [] = 0
+countUniqueWords (x:xs)
+    | x `elem` xs = countUniqueWords xs
+    | otherwise = 1 + countUniqueWords xs
+
 countCharInStrings :: Char -> [String] -> Int
 countCharInStrings _ [] = 0
 countCharInStrings c (s:ss) = countChar c s + countCharInStrings c ss

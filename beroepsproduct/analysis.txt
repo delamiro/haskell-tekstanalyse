@@ -1,6 +1,6 @@
-Your text: Eikels zijn roze, Monster Ultra Rosa is roze, ik heb zojuist 24 eikels gekocht
-How many characters: 78
-How many words: 14
-How many unique words: 13
-How many times is the letter a used: 2
-Dubble char count result: 156
+Your text: Ga Ga deze text kijken voor de letter a zodat ik weet of mijn programma werkt ezel
+How many characters: 82
+How many words: 17
+How many unique words: 16
+How many times is the letter a used: 6
+Dubble char count result: 164

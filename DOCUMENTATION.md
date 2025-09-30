@@ -37,7 +37,6 @@ Hierdoor
 
 ### Haskell
 
-
 ### Welke functionele concepten worden vaak gebruikt in haskell
 
 ## Challenge - Tekstanalyse
@@ -71,9 +70,87 @@ Eerst roep je de functie `applyFunction` en daarna geef je de paramater `another
 
 Recursie is wanneer een functie zichzelf aanroept. Zie dit als een soort loop. In meeste programeer talen kan je problemen oplossen zonder recursie. En is de code makkelijker te testen en "Leesbaarder". Toch zijn er gevallen dat recursie handig kan zijn. Bijvoorbeeld voor een boomstructuur of recursive algorithmes.
 
+Om er voor te zorgen dat de functie niet in een oneindige loop terecht komt moet je een **Base Case** hebben. Zodra de functie de **Base Case** Bereikt stopt de functie. Je moet ook niet vergeten om in de functie **Te werken naar de base case**. Anders blijft de functie nog steeds oneindig loopen.
+Hier heb je een voorbeeld in java:
 
+```java
+public void countdown(int startNumber){
+    // Base case: stop when startNumber reaches 0
+    if(n <= 0){
+        System.out.println("Done!");
+        return;
+    }
+    System.out.println(n);
+    // Make progress and recursive call: it grabs startNumber -1 aka it counts down
+    countdown(startNumber - 1);
+}
+```
+
+en in haskell:
+
+```haskell
+countdown :: Int -> IO ()
+countdown n =
+    if n <= 0 then
+        putStrLn "Done!"
+        -- base case
+    else do
+        print n
+        countdown (n - 1)         -- recursive call
+```
 
 ## Implementatie
+
+In dit hoofdstuk staat een korte samenvatting van de implementatie en gebruikte functionele concepten.
+
+### Bestanden
+
+In de map `beroepsproduct` vind je 5 bestanden.
+
+- analysis.txt (Als de code is gerunt)
+- example.txt
+- WordFrequency.hs
+- WordFrequencyNotReadable
+
+TODO: CHANGE TXT FILES
+
+#### analysis.txt
+
+Dit bestand zie je staan als je de code hebt gerunt. In dit bestand staat de analyse van de text in `example.txt`.
+
+#### example.txt
+
+In dit bestand plaats je de tekst die je wilt laten analyseren door het haskell programma.
+
+#### README.md
+
+Hierin kan je vinden hoe je het bestand moet runnen.
+
+#### WordFrequency.hs
+
+Dit is de applicatie. Echter is deze code niet volledig zoals haskell code standaarden.
+In Haskell wil je zoveel mogelijk variable namen versimpelen.
+Een voorbeeld hiervan:
+
+```Haskell
+countCharInStrings :: Char -> [String] -> Int
+countCharInStrings _ [] = 0
+countCharInStrings c (s:ss) = countChar c s + countCharInStrings c ss
+```
+
+In dit stuk code ze je dat de parameters `c` en `(s:ss)` zijn genoemd.
+In andere programmeer talen zou je dit snel al volledige namen geven.
+De reden waarom dat in Haskell niet bij alle variable word gedaan is door de wiskundige achtergrond van de taal. In wiskundige notatie gebruik je ook niet volledige woorden maar: `E = mc^2`.
+
+Echter heb ik in mijn eigen applicatie er voor gekozen om alles wel volledige namen te geven.
+De reden hiervoor is dat ik dit leesbaarder vind.
+Om een functionele taal te lezen zonder dat je het snapt is best een uitdaging.
+Maar om te laten zien hoe 
+### Functionele concepten
+
+#### Recursie123
+
+#### Higher-Order-Functions
 
 ## Reflectie
 
@@ -81,8 +158,7 @@ Recursie is wanneer een functie zichzelf aanroept. Zie dit als een soort loop. I
 
 ## Bronvermelding
 
-- Haskell Foundation. (n.d.). *Haskell*. Geraadpleegd op 19 september 2025, van https://www.haskell.org/
-
+- Haskell Foundation. (n.d.). _Haskell_. Geraadpleegd op 19 september 2025, van https://www.haskell.org/
 
 https://wiki.haskell.org/Why_Haskell_matters
 

@@ -1,5 +1,3 @@
-import qualified Data.Set as Set
-
 -- Recursive character counter
 countChar :: Char -> String -> Int
 countChar _ [] = 0
@@ -19,16 +17,19 @@ dubbleCharCount f x = f x
 numberTimesTwo :: Int -> Int
 numberTimesTwo x = x * 2
 
+-- Unique word counter using 
 
--- Higher order function
+countUniqueWords :: [String] -> Int
+countUniqueWords [] = 0
+countUniqueWords (firstWord:restOfTheWords)
+    | firstWord `elem` restOfTheWords = countUniqueWords restOfTheWords
+    | otherwise = 1 + countUniqueWords restOfTheWords
 
-uniqueCount :: [String] -> Int
-uniqueCount = Set.size . Set.fromList
-
+-- Analyze text
 analyzeText :: String -> Char -> IO ()
 analyzeText txt charToAnalyze = do
     let wordList = words txt
-    let uniqueWordsCount = uniqueCount wordList
+    let uniqueWordsCount = countUniqueWords wordList
     let wordCount = length wordList
     let charCount = length txt
     let uniqueCharCount = countCharInStrings charToAnalyze wordList
@@ -53,6 +54,7 @@ analyzeText txt charToAnalyze = do
     writeFile filename content
     putStrLn $ "File '" ++ filename ++ "' has been created."
 
+-- Main
 main :: IO ()
 main = do
     contents <- readFile "example.txt"
