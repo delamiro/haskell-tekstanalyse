@@ -1,5 +1,3 @@
-import qualified Data.Set as Set
-
 countChar :: Char -> String -> Int
 countChar _ [] = 0
 countChar c (s:xs)
@@ -18,13 +16,10 @@ countCharInStrings :: Char -> [String] -> Int
 countCharInStrings _ [] = 0
 countCharInStrings c (s:ss) = countChar c s + countCharInStrings c ss
 
-uniqueCount :: [String] -> Int
-uniqueCount = Set.size . Set.fromList
-
 analyzeText :: String -> Char -> IO ()
 analyzeText txt charToAnalyze = do
     let wordList = words txt
-    let uniqueWordsCount = uniqueCount wordList
+    let uniqueWordsCount = countUniqueWords wordList
     let wordCount = length wordList
     let charCount = length txt
     let uniqueCharCount = countCharInStrings charToAnalyze wordList

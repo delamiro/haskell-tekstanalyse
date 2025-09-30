@@ -1,6 +1,1 @@
-Your text: Ga Ga deze text kijken voor de letter a zodat ik weet of mijn programma werkt ezel
-How many characters: 82
-How many words: 17
-How many unique words: 16
-How many times is the letter a used: 6
-Dubble char count result: 164
+
