@@ -29,7 +29,7 @@ analyzeText txt ch = do
 
 main :: IO ()
 main = do
-    contents <- readFile "example.txt"
+    contents <- readFile "textToAnalyse.txt"
     putStrLn "Add a character to check how many times it occors in the text"
     charToAnalyze <- getChar
     analyzeText contents charToAnalyze

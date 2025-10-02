@@ -60,7 +60,7 @@ analyzeText txt charToAnalyze = do
     putStrLn ("How many times is the letter a used: " ++ show uniqueCharCount)
     putStrLn ("Dubble char count result: " ++ show dubbleCharCountResult)
 
-    let filename = "analysis.txt"
+    let filename = "Analysis.txt"
     let content = unlines
             [ "Your text: " ++ unwords wordList
             , "How many characters: " ++ show charCount
@@ -76,7 +76,7 @@ analyzeText txt charToAnalyze = do
 -- Dit is wat word gerunt als je het haskell programma start
 main :: IO ()
 main = do
-    contents <- readFile "example.txt"
+    contents <- readFile "TextToAnalyse.txt"
     putStrLn "Add a character to check how many times it occors in the text"
     charToAnalyze <- getChar
     analyzeText contents charToAnalyze
