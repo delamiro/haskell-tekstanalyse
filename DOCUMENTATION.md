@@ -79,15 +79,56 @@ In haskell zijn de belangerijkste functionele concepten:
 
 #### Pure functies
 
+Een pure functie is een functie zonder bijwerkingen.
+Deze functies hebben altijd hetzelfde resultaat bij dezelfde input.
+
+```Haskell
+add x y = x + y
+add 2 3 -- altijd 5
+```
+
 #### Unmutability
+
+Waarden veranderen niet. In plaats van dat je de bestaande waarde aanpast maak je een nieuwe waarde aan
+
+```Haskell
+x = 9
+y = x + 1 -- x zal
+```
 
 #### First-class functies
 
+Functies zijn eerste-klasse burgers: je kunt ze opslaan in variabelen, doorgeven als argumenten, of teruggeven uit andere functies.
+
+```Haskell
+applyTwice f x = f (f x)
+applyTwice (+3) 10  -- geeft 16
+```
+
 #### Higer-order functies
+
+Functies die andere functies nemen als argument of een functie teruggeven.
+
+```Haskell
+map (+1) [1,2,3]  -- geeft [2,3,4]
+```
 
 #### Recursie
 
+In plaats van loops gebruikt Haskell recursie om herhaling te implementeren.
+
+```Haskell
+factorial 0 = 1
+factorial n = n * factorial (n-1)
+```
+
 #### Lazy evaluation
+
+Berekeningen worden pas uitgevoerd als ze echt nodig zijn.
+
+```Haskell
+take 5 [1..]  -- geeft [1,2,3,4,5]
+```
 
 ## Challenge - Tekstanalyse
 
@@ -239,8 +280,6 @@ Ik denk ook dat in vorige projecten bepaalde problemen die ik had best gemakkeli
 Ik denk dat ik recursie ook dus in de toekomst ga meenemen en gebruiken in toekomstige projecten
 
 ## Conclusie
-
-
 
 ## Bronvermelding
 
