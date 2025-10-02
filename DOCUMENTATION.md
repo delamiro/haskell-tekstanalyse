@@ -236,23 +236,70 @@ In de analyse kan je terug vinden:
 - Hoevaal een specifiek character is gebruikt (als je het programma runt krijg je een prompt om een char in te vullen om te analyseren)
 - De de dubbele character count. (Dit was om te laten zien dat ik een **HOF** kan toepassen maar niet heel usefull in deze code)
 
+#### 4.1.3 Analysis.txt
 
+Dit bestand zie je staan als je de code hebt gerunt. In dit bestand staat de analyse van de text in `TextToAnalyse.txt`.
 
-#### 4.1.1 analysis.txt
-
-Dit bestand zie je staan als je de code hebt gerunt. In dit bestand staat de analyse van de text in `example.txt`.
-
-#### 4.1.2 example.txt
+#### 4.1.4 TextToAnalyse.txt
 
 In dit bestand plaats je de tekst die je wilt laten analyseren door het haskell programma.
 
-#### 4.1.3 README.md
+#### 4.1.5 BetterTextAnalysis.hs
 
-Hierin kan je vinden hoe je het bestand moet runnen.
+Tijdens het schrijven van dit document ben ik er achter gekomen dat ik **HOF**'s niet goed genoeg begrepen heb.
+Dit komt later in het hoofdstuk [5.2 Higher-Order-Functions](#52-higher-order-functions) terug en ga ik nu niet te diep op in.
+Maar de reden waarom ik dit benoem is omdat de code in `TextAnalysis.hs` optimaler kan.
+Ook heb ik met niet volledig gehouden aan de code conventies voor Haskell.
+Toch was ik ergens nieuwsgierig naar hoe mijn applicatie er uit zou zien in optimale Haskell code.
+Dus heb ik mijn code van `TextAnalysis.hs` aan chatgpt gegeven met als vraag of hij dit kon optimaliseren.
+En chatgpt kwam terug met de code die nu in `BetterTextAnalysis.hs` staat.
+In de code heb ik wel de 2 functies verwijderd die wel in het orginele bestand stonden.
+Namelijk: `doubleCharCount` en `multiplyByTwo`.
+Deze functies waren er alleen maar om aan te toonen dat ik wist wat een **HOF** was en deden verder niks bijzonders.
 
-#### 4.1.4 WordFrequencyNotReadable.hs
+Als je `TextAnalysis.hs` en `BetterTextAnalysis.hs` naast elkaar houdt zie je een aantal verschillen.
 
-TODO: Bespreek met docent over chatgpt code
+Het eerste verschil is dat `BetterTextAnalysis.hs` een import gebruikt namelijk: `import Data.List (nub)`.
+Deze import is voor de functie nub.
+Deze functie zit niet standaard in Haskell zoals bijvoorbeeld `filter`.
+`nub` is een functie die alle duplicates uit de lijst haalt.
+
+In `TextAnalysis.hs` zie je dat ik problemen met recursie heb opgelost, Terwijl in `BetterTextAnalysis.hs` functies gebruikt worden die standaard geimporteed zijn in ieder haskell bestand.
+De functies die worden gebruikt zijn:
+
+- **filter**: is een HOF die een lijst filtert, heeft wel een functie nodig om te weten op wat die moet filteren.
+- **sum**: telt alle getallen in een lijst bij elkaar op.
+- **map**: is ee HOF die een functie uitvoert op ieder element van een lijst.
+
+Doordat deze standaard geimporteerde functies gebruikt worden hoeven we ook geen _Basecase_ bij onze functies meer te zetten.
+Dit scheelt 3 regels.
+
+Verder zie je ook dat in `analyzeText` niet alles in een aparte variable word gestopt,
+Maar alles in `contents` word berekend.
+De reden waarom ik dit had gedaan in het bestand `TextAnalysis.hs` is omdat ik het op 2 plekken nodig had.
+En dat is wel een goede reden om het dus in een variable te stoppen.
+Maar nog steeds wel intressant om te zien dat ze het niet in aparte variable stoppen.
+
+In `BetterTextAnalysis.hs` zie je ook dat er gebruik word gemaakt van **(.)**.
+Een voorbeeld hiervan is in de functie countCharInStringList :
+
+```haskell
+countCharInStringList :: Char -> [String] -> Int
+countCharInStringList c = sum . map (countCharInString c)
+```
+
+De **(.)** zorgt ervoor dat je functies kan chainen.
+Het voert de functies uit van rechts naar links.
+In dit voorbeeld zie je dat het 2 functies chained, maar je zou meerder functies met elkaar kunnen chainen.
+
+
+
+
+
+
+
+
+
 
 Omdat ik zelf nieuwsgierig was naar hoe mijn code eruit zou zien als ik alles volgens de code conventies zou houden,
 En hoe klein mijn code zou zijn als ik alles optimaal zou schrijven.
