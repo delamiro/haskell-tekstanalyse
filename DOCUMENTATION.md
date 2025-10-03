@@ -6,7 +6,7 @@
 | Docent        | Michel Koolwaaij |
 | Course        | AAP              |
 | Versie        | 1.3              |
-| Datum         | 9/19/2025        |
+| Datum         | 10/3/2025        |
 
 ## Inhoudsopgave
 
@@ -203,8 +203,6 @@ In de map `beroepsproduct` vind je 5 bestanden.
 - TextToAnalyse.txt
 - BetterTextAnalysis.hs
 
-TODO: CHANGE TXT FILES
-
 #### 4.1.1 README.md
 
 In de README.md staat wat je allemaal nodig hebt en moet doen om deze code te runnen.
@@ -330,23 +328,18 @@ En na twee minuten kan je echt wel recursie lezen.
 Ik denk ook dat in vorige projecten bepaalde problemen die ik had best gemakkelijk opgelost konden worden door het gebruiken van recursie.
 Ik denk dat ik recursie ook dus in de toekomst ga meenemen en gebruiken in toekomstige projecten.
 
-### 5.2 Higher-order-functions
+### 5.2 Higher-order functions
 
-Voor het maken van dit rapport wou ik eigenlijk zeggen dat ik weinig nut zag in **HOF's**.
-Ik heb al mijn "problemen" tijdens deze challenge opgelost met recursie.
-Ik kon me ook niks voorstellen waarvoor je een functie als parameter zou willen meegeven.
-En ik wou dit gedeelte van het rapport ook gebruiken om te klagen over **HOF's**.
-Maar, tijdens het maken van dit rapport ben ik ergens achtergekomen waardoor ik snap waarom je het wel zou willen gebruiken.
+Aanvankelijk zag ik weinig nut in **higher-order functions (HOF's)**.
+Tijdens deze challenge heb ik al mijn problemen opgelost met recursie en ik kon me nauwelijks voorstellen waarom je een functie als parameter zou willen meegeven. Ik was zelfs van plan om dit gedeelte van het rapport te gebruiken om te klagen over **HOF's**.
 
-Ik wist niet dat de functies zoals `map`, `filter` en `(.)` ook **HOF's** zijn.
-Ik heb wel kort over ze gelezen maar ik snapte ook niet helemaal hoe deze functies gebruikt moesten worden.
-Dus heb ik alles zelf proberen te programmeren, wat voor het leren van de taal en functioneel programmeren top was.
-Maar de code is ook vrij inefficient.
-Als ik **HOF's** had gebruikt was mijn code compacter,leesbaarder , efficienter en meer Haskell idiomatic geworden.
+Tijdens het schrijven van dit rapport realiseerde ik me echter waarom **HOF's** wél nuttig zijn. Ik had niet door dat functies zoals `map`, `filter` en `(.)` ook **HOF's** zijn. Hoewel ik er al kort over had gelezen, begreep ik niet helemaal hoe je ze effectief kunt gebruiken. Daarom probeerde ik alles zelf te programmeren, wat geweldig was voor het leren van Haskell en functioneel programmeren. Toch bleek mijn code vrij inefficiënt.
 
-Een voorbeeld hiervan:
+Had ik **HOF's** gebruikt, dan zou mijn code compacter, leesbaarder, efficiënter en meer Haskell-idiomatisch zijn geweest.
 
-```Haskell
+Een voorbeeld hiervan is deze functie in `TextAnalysis.hs`, die het aantal unieke woorden in een lijst van strings telt:
+
+```haskell
 countUniqueWords :: [String] -> Int
 countUniqueWords [] = 0
 countUniqueWords (firstWord:restOfTheWords)
@@ -354,30 +347,17 @@ countUniqueWords (firstWord:restOfTheWords)
     | otherwise = 1 + countUniqueWords restOfTheWords
 ```
 
-Deze functie in `TextAnalysis.hs` telt de unique woorden in een lijst van strings.
-Ik heb aan chatGPT gevraagd hoe hij deze functie beter zou maken.
+Ik vroeg ChatGPT om suggesties om deze functie te verbeteren en kreeg drie belangrijke punten:
 
-```text
-countUniqueWords :: [String] -> Int
-countUniqueWords [] = 0
-countUniqueWords (firstWord:restOfTheWords)
-    | firstWord `elem` restOfTheWords = countUniqueWords restOfTheWords
-    | otherwise = 1 + countUniqueWords restOfTheWords
+1. `elem` heeft een tijdscomplexiteit van O(n) en wordt voor elk woord aangeroepen, waardoor de functie ongeveer O(n²) wordt.
+2. Recursie is niet nodig; Haskell heeft ingebouwde bibliotheekfuncties waarmee het **idiomatischer** kan.
+3. Hoofdlettergevoeligheid wordt genegeerd, waardoor `"hello"` en `"Hello"` als verschillende woorden worden geteld.
 
-how would you make this function better
-```
+ChatGPT gaf twee mogelijke oplossingen:
 
-En hij gaf 3 problemen aan.
+Gebruik `nub` uit `Data.List`. De functie blijft O(n²), maar wordt compacter en leesbaarder:
 
-1. elem is O(n) en word gecalled bij ieder woord dus de complexiteit van de functie is ongeveer O(n²).
-2. Recursie is niet nodig, haskell heeft eigen libary functies die het meer **idiomatically** kunnen doen.
-3. Case sensitivity word genegeerd ("hello" en "Hello" zijn 2 verschillende woorden).
-
-hij gaf eigenlijk 2 opties om dit te fixen.
-
-- gebruik `nub`, de functie blijft O(n²) maar is compacter en leesbaarder
-
-```Haskell
+```haskell
 import Data.List (nub)
 import Data.Char (toLower)
 
@@ -385,9 +365,9 @@ countUniqueWords :: [String] -> Int
 countUniqueWords = length . nub . map (map toLower)
 ```
 
-- gebruik `Data.Set`, is O(n log n)
+Gebruik `Data.Set`, wat een tijdscomplexiteit van O(n log n) heeft en bovendien efficiënter is:
 
-```Haskell
+```haskell
 import qualified Data.Set as Set
 import Data.Char (toLower)
 
@@ -395,10 +375,9 @@ countUniqueWords :: [String] -> Int
 countUniqueWords = Set.size . Set.fromList . map (map toLower)
 ```
 
-En beide oplossingen worden compacter gemaakt door **HOF's** en `Data.Set` is zelf efficienter.
-Door te kijken naar hoe `filter` gebruikt word snap ik nu veel beter waarom en wanneer je een **HOF** gebruikt.
+Beide oplossingen maken gebruik van **HOF's** en zijn compacter. `Data.Set` biedt bovendien een efficiëntere uitvoering. Door te zien hoe functies zoals `filter` en `map` worden gebruikt, begrijp ik nu veel beter waarom en wanneer je een **HOF** zou toepassen.
 
-De les van deze challenge: Voortaan beter onderzoek doen naar dingen die ik niet snap
+**De les van deze challenge:** Voordat ik dingen opgeef, moet ik eerst goed onderzoeken wat de taal en de ingebouwde functies te bieden hebben.
 
 ## 6. Conclusie
 
@@ -407,7 +386,10 @@ En wist ik het nut van `recursie` en `higher-order-funcions` niet.
 
 Na het maken van deze opdracht snap ik nu de krachten van functioneel-programmeren,
 Hoe je `recursie` en `higher-order-functions` nuttig toe kan passen,
-en heb ik geleerd wat voor nuttige dingen haskell kan doen.
+en heb ik geleerd wat voor nuttige dingen Haskell kan doen.
+
+Ik denk dat ik Haskell nu ook zou toepassen voor problemen tijdens projecten.
+Bijvoorbeeld een wiskundige berekening, of een algoritme schrijven waarbij performance en accuracy het belangerijkste is.
 
 En wat ik ook heb geleerd van deze opdracht is om beter documentatie te lezen.
 Dit had mij denk ik best veel moeite bespaard door dat ik alles nu **recursief** heb opgelost
