@@ -5,7 +5,7 @@
 | StudentNummer | 2135216          |
 | Docent        | Michel Koolwaaij |
 | Course        | AAP              |
-| Versie        | 1.1              |
+| Versie        | 1.3              |
 | Datum         | 9/19/2025        |
 
 ## Inhoudsopgave
@@ -14,19 +14,22 @@
 - [2. Onderzoek](#2-onderzoek)
   - [2.1 Haskell](#21-haskell)
   - [2.2 Functionele concepten in haskell](#22-functionele-concepten-in-haskell)
-    - [2.2.1](#221-pure-functies)
-    - [2.2.1](#222-unmutability)
-    - [2.2.1](#223-first-class-functies)
-    - [2.2.1](#224-higer-order-functies)
-    - [2.2.1](#225-recursie)
-    - [2.2.1](#226-lazy-evaluation)
-- [3. Challenge](#3-challenge---tekstanalyse)
-  - [3.1 Higher-Order-Functions](#31-higher-order-functions)
+    - [2.2.1 Pure functies](#221-pure-functies)
+    - [2.2.1 Unmutability](#222-unmutability)
+    - [2.2.1 First-class-functies](#223-first-class-functies)
+    - [2.2.1 Higher-order-functies](#224-higer-order-functies)
+    - [2.2.1 Recursie](#225-recursie)
+    - [2.2.1 Lazy evaluation](#226-lazy-evaluation)
+- [3. Challenge - tekstanalyse](#3-challenge---tekstanalyse)
+  - [3.1 Higher-Order-Functions (HOF)](#31-higher-order-functions-hof)
   - [3.2 Recursie](#32-recursie)
 - [4. Implementatie](#4-implementatie)
   - [4.1 Bestanden](#41-bestanden)
-  --TODO, pas dit aan zodra files vast staan
-    - [4.1.1 Analysis.txt](#411-analysistxt)
+    - [4.1.1 README.md](#411-readmemd)
+    - [4.1.2 TextAnalysis.hs](#412-textanalysishs)
+    - [4.1.3 Analysis.txt](#413-analysistxt)
+    - [4.1.4 TextToAnlyse.txt](#414-texttoanalysetxt)
+    - [4.1.5 BetterTextAnalysis.hs](#415-bettertextanalysishs)
   - [4.2 Functionele-concepten](#42-functionele-concepten)
     - [4.2.1 Recursie - toegepast](#421-recursie---toegepast)
     - [4.2.2 Higher-order-functions - toegepast](#422-higher-order-functions---toegepast)
@@ -50,9 +53,9 @@ En om **Functionele concepten** te leren gebruiken zoals **Recursie**.
 > "Express your ideas clearly and learn a new way of thinking about programming. Based on lambda calculus Haskell is a purely functional programming language that features referential transparency, immutability and lazy evaluation. Concepts that will blow your mind — relearn programming while having an absolute blast."
 > — [Haskell.org](https://www.haskell.org/)
 
-Haskell is een puur functionele programmeertaal. Dit betekent dat alle functies `pure` zijn en geen `side effects` hebben, ze wijzigen geen *global state* of doen iets onverwachts. Bij dezelfde input krijg je altijd dezelfde output. Dit maakt testen en begrijpen van je code eenvoudig.
+Haskell is een puur functionele programmeertaal. Dit betekent dat alle functies `pure` zijn en geen `side effects` hebben, ze wijzigen geen _global state_ of doen iets onverwachts. Bij dezelfde input krijg je altijd dezelfde output. Dit maakt testen en begrijpen van je code eenvoudig.
 
-Belangrijke concepten zoals *referential transparency*, *immutability* en *lazy evaluation* maken Haskell zeer betrouwbaar en expressief. Complexe algoritmes kunnen duidelijk en beknopt worden geschreven, zonder verborgen gedrag.
+Belangrijke concepten zoals _referential transparency_, _immutability_ en _lazy evaluation_ maken Haskell zeer betrouwbaar en expressief. Complexe algoritmes kunnen duidelijk en beknopt worden geschreven, zonder verborgen gedrag.
 
 Door deze eigenschappen wordt Haskell vaak gebruikt in domeinen waar correctheid cruciaal is, zoals compilerbouw, financiële systemen en wetenschappelijke berekeningen.
 
@@ -236,6 +239,10 @@ In de analyse kan je terug vinden:
 - Hoevaal een specifiek character is gebruikt (als je het programma runt krijg je een prompt om een char in te vullen om te analyseren)
 - De de dubbele character count. (Dit was om te laten zien dat ik een **HOF** kan toepassen maar niet heel usefull in deze code)
 
+In `TextAnalysis.hs` Is iedere functie uitgelegd met commentaar waar nodig.
+
+In de `README.md` staat hoe je de code kan runnen.
+
 #### 4.1.3 Analysis.txt
 
 Dit bestand zie je staan als je de code hebt gerunt. In dit bestand staat de analyse van de text in `TextToAnalyse.txt`.
@@ -292,42 +299,27 @@ De **(.)** zorgt ervoor dat je functies kan chainen.
 Het voert de functies uit van rechts naar links.
 In dit voorbeeld zie je dat het 2 functies chained, maar je zou meerder functies met elkaar kunnen chainen.
 
+Door deze code te lezen en begrijpen kwam ik er vrij snel achter dat `filter` en `map` beide HOF functies zijn.
+Door hoe je deze functies gebruikt is voor mij het concept van HOF's veel duidelijker geworden.
+Ik ben ook blij dat ik dit document hebt laten genereren
 
-
-
-
-
-
-
-
-
-Omdat ik zelf nieuwsgierig was naar hoe mijn code eruit zou zien als ik alles volgens de code conventies zou houden,
-En hoe klein mijn code zou zijn als ik alles optimaal zou schrijven.
-Heb ik dit bestand gemaakt.
-Dit is mijn beroepsproduct maar dan zo "haskell-idiomatic" geschreven als het maar kan.
-Bij dit bestand heb ik wel 2 functies verwijderd die wel in `WordFrequency.hs` zitten.
-Namelijk: `doubleCharCount` en `multiplyByTwo`.
-Deze functies (zoals ik ook heb beschreven in het code commentaar) zijn totaal niet nodig voor deze applicatie,
-En zijn eigenlijk alleen maar geschreven zodat ik kon aantonen dat ik een Higher-Order-Functie kan schrijven.
-
-Zelf vind ik het wel intressant hoe klein het programma echt kan worden.
-Dit bestand is precies **35** lines lang.
+In de `README.md` staat hoe je de code kan runnen.
 
 ### 4.2 Functionele concepten
 
 #### 4.2.1 Recursie - Toegepast
 
-In `WordFrequency.hs` kan je recursie zien bij de functies: `countUniqueWords` en `countCharInString` en `countCharInStringList`.
+In `TextAnalysis.hs` kan je recursie zien bij de functies: `countUniqueWords` en `countCharInString` en `countCharInStringList`.
 Al deze functies roepen zichzelf weer aan.
 
 #### 4.2.2 Higher-Order-Functions - Toegepast
 
-In `WordFrequency.hs` is de functie `doubleCharCount` een higher-order-function.
+In `TextAnalysis.hs` is de functie `doubleCharCount` een **HOF**.
 Dit kan je zien aandat het om een functie vraagt in de parameter.
 
-## 5. Reflectie
+En in `BetterTextAnalysis.hs` heb ik gebruik gemaakt van _filter_ en _map_. Dat zijn beide **HOF's**
 
-Tijdens deze opdracht heb ik gebruik gemaakt van: `Higher-order-functions` en `Recursie`.
+## 5. Reflectie
 
 ### 5.1 Recursie
 
@@ -336,21 +328,21 @@ In het begin was ik ook bang dat recursie lastig te lezen en begrijpen zou zijn 
 Maar na het programmeren van deze opdracht zie ik in dat recursie soms echt heel handig kan zijn.
 En na twee minuten kan je echt wel recursie lezen.
 Ik denk ook dat in vorige projecten bepaalde problemen die ik had best gemakkelijk opgelost konden worden door het gebruiken van recursie.
-Ik denk dat ik recursie ook dus in de toekomst ga meenemen en gebruiken in toekomstige projecten
+Ik denk dat ik recursie ook dus in de toekomst ga meenemen en gebruiken in toekomstige projecten.
 
 ### 5.2 Higher-order-functions
 
-Voor het maken van dit rapport wou ik eigenlijk zeggen dat ik weinig nut zag in `Higher-order-functions`.
+Voor het maken van dit rapport wou ik eigenlijk zeggen dat ik weinig nut zag in **HOF's**.
 Ik heb al mijn "problemen" tijdens deze challenge opgelost met recursie.
 Ik kon me ook niks voorstellen waarvoor je een functie als parameter zou willen meegeven.
-En ik wou dit gedeelte van het rapport ook gebruiken om te klagen over `Higher-order-functions`.
+En ik wou dit gedeelte van het rapport ook gebruiken om te klagen over **HOF's**.
 Maar, tijdens het maken van dit rapport ben ik ergens achtergekomen waardoor ik snap waarom je het wel zou willen gebruiken.
 
-Ik wist niet dat de functies zoals `map`, `filter` en `(.)` ook `Higher-order-functions` zijn.
+Ik wist niet dat de functies zoals `map`, `filter` en `(.)` ook **HOF's** zijn.
 Ik heb wel kort over ze gelezen maar ik snapte ook niet helemaal hoe deze functies gebruikt moesten worden.
 Dus heb ik alles zelf proberen te programmeren, wat voor het leren van de taal en functioneel programmeren top was.
 Maar de code is ook vrij inefficient.
-Als ik `Higher-order-functions` had gebruikt was mijn code compacter,leesbaarder en efficienter geworden.
+Als ik **HOF's** had gebruikt was mijn code compacter,leesbaarder , efficienter en meer Haskell idiomatic geworden.
 
 Een voorbeeld hiervan:
 
@@ -362,7 +354,7 @@ countUniqueWords (firstWord:restOfTheWords)
     | otherwise = 1 + countUniqueWords restOfTheWords
 ```
 
-Deze functie in `WordFrequency.hs` telt de unique woorden in een lijst van strings.
+Deze functie in `TextAnalysis.hs` telt de unique woorden in een lijst van strings.
 Ik heb aan chatGPT gevraagd hoe hij deze functie beter zou maken.
 
 ```text
@@ -403,25 +395,31 @@ countUniqueWords :: [String] -> Int
 countUniqueWords = Set.size . Set.fromList . map (map toLower)
 ```
 
-En beide oplossingen worden compacter gemaakt door `Higher-order-functions` en `Data.Set` is zelf efficienter.
-Ook na dat ik heb gekeken welke HOFS er allemaal zijn, heb ik een veel beter idee gekregen met waarom je het zou gebruiken.
-En wanneer je ze zou willen toepassen.
+En beide oplossingen worden compacter gemaakt door **HOF's** en `Data.Set` is zelf efficienter.
+Door te kijken naar hoe `filter` gebruikt word snap ik nu veel beter waarom en wanneer je een **HOF** gebruikt.
 
 De les van deze challenge: Voortaan beter onderzoek doen naar dingen die ik niet snap
 
 ## 6. Conclusie
 
+Voor het maken van deze opdracht had ik geen idee hoe functioneel-programmeren werkte,
+En wist ik het nut van `recursie` en `higher-order-funcions` niet.
+
+Na het maken van deze opdracht snap ik nu de krachten van functioneel-programmeren,
+Hoe je `recursie` en `higher-order-functions` nuttig toe kan passen,
+en heb ik geleerd wat voor nuttige dingen haskell kan doen.
+
+En wat ik ook heb geleerd van deze opdracht is om beter documentatie te lezen.
+Dit had mij denk ik best veel moeite bespaard door dat ik alles nu **recursief** heb opgelost
+In plaats van met **HOF's**.
+Maar aan de andere kant, doordat ik alles **recursief** heb opgelost heb ik recusie goed geleerd.
+
 ## 7. Bronvermelding
 
-- Haskell Foundation. (n.d.). Haskell. Geraadpleegd op 19 september 2025, van https://www.haskell.org/
+- HaskellWiki. (2024, 3 mei). _Why Haskell matters_. Geraadpleegd van [https://wiki.haskell.org/Why_Haskell_matters](https://wiki.haskell.org/Why_Haskell_matters)
 
-https://wiki.haskell.org/Why_Haskell_matters
+- HaskellWiki. (z.d.). _Haskell_. Geraadpleegd van [https://wiki.haskell.org/index.php?title=Haskell](https://wiki.haskell.org/index.php?title=Haskell)
 
-https://wiki.haskell.org/index.php?title=Haskell
+- AIM-CNI. (z.d.). _Course info APP_. Geraadpleegd van [https://aim-cni.github.io/app/docs/category/course-info-app](https://aim-cni.github.io/app/docs/category/course-info-app)
 
-## QUICKNOTE
-
-At the functions `countChar` and `countCharInStrings` you will see:
-`countChar _ [] = 0`
-the `_` stands for that it does not matter what character will be given, and the [] stands for an emty list.
-So this lines says "If the list is empty then return 0".
+- OpenAI. (2025). _ChatGPT (GPT-5) [Large language model]_. Geraadpleegd op 3 oktober 2025 van [https://chat.openai.com]

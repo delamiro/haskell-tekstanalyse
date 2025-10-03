@@ -1,6 +1,0 @@
-Your text: Pas deze text aan om iets te analyseren
-How many characters: 39
-How many words: 8
-How many unique words: 8
-How many times is the letter a used: 5
-Dubble char count result: 78

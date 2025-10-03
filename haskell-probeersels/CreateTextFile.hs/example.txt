@@ -1,1 +1,0 @@
-Hello, Haskell can write to a file!

@@ -11,7 +11,7 @@ countUniqueWords = length . nub
 
 analyzeText :: String -> Char -> IO ()
 analyzeText txt ch = do
-    let filename = "analysis.txt"
+    let filename = "Analysis.txt"
         ws = words txt
         content = unlines
             [ "Your text: " ++ unwords ws
@@ -25,7 +25,7 @@ analyzeText txt ch = do
 
 main :: IO ()
 main = do
-    contents <- readFile "textToAnalyse.txt"
+    contents <- readFile "TextToAnalyse.txt"
     putStrLn "Add a character to check how many times it occurs in the text"
     charToAnalyze <- getChar
     analyzeText contents charToAnalyze
